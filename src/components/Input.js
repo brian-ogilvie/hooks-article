@@ -15,7 +15,7 @@ export default function Input({
         <input
           type={type || 'text'}
           name={name}
-          value={value}
+          value={value || ''}
           onChange={onChange}
           placeholder={placeholder}
         />
