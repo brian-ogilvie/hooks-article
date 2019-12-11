@@ -2,7 +2,7 @@ import React from 'react';
 import useInput from '../hooks/useInput';
 import Input from './Input';
 
-export default function NaiveForm() {
+export default function NaiveSignUp() {
   const [name, handleNameChange] = useInput('');
   const [email, handleEmailChange] = useInput('');
   const [password, handlePasswordChange] = useInput('');

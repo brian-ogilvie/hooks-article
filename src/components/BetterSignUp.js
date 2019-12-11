@@ -2,7 +2,7 @@ import React from 'react';
 import useForm from '../hooks/useForm';
 import Input from './Input';
 
-export default function NaiveForm() {
+export default function BetterSignUp() {
   function onSubmit(data) {
     console.log({ ...data });
   }
