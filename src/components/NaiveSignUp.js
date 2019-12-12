@@ -1,10 +1,18 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
 import Input from './Input';
+import useValidatedInput from '../hooks/useValidatedInput';
 
 export default function NaiveSignUp() {
   const [name, handleNameChange] = useInput('');
-  const [email, handleEmailChange] = useInput('');
+  const [email, emailIsValid, handleEmailChange] = useValidatedInput(
+    '',
+    /^\w[^ ]*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+  );
+  const [zipCode, zipCodeIsValid, handleZipCodeChange] = useValidatedInput(
+    '',
+    /^\d{5}(-\d{4})?$/
+  );
   const [password, handlePasswordChange] = useInput('');
   const [passwordConfirm, handlePasswordConfirmChange] = useInput('');
 
@@ -22,6 +30,7 @@ export default function NaiveSignUp() {
   function resetForm() {
     handleNameChange('');
     handleEmailChange('');
+    handleZipCodeChange('');
     handlePasswordChange('');
     handlePasswordConfirmChange('');
   }
@@ -40,8 +49,17 @@ export default function NaiveSignUp() {
         name="email"
         label="Email:"
         value={email}
+        error={!emailIsValid}
         onChange={handleEmailChange}
         placeholder="Enter your email."
+      />
+      <Input
+        name="zipCode"
+        label="Zip Code:"
+        value={zipCode}
+        error={!zipCodeIsValid}
+        onChange={handleZipCodeChange}
+        placeholder="Enter your Zip Code."
       />
       <Input
         name="password"

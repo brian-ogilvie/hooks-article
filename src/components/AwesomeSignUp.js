@@ -1,6 +1,13 @@
 import React from 'react';
-import Form from './Form';
-import Input from './Input';
+import Form, { Input } from './Form';
+
+const validators = {
+  email: 'email',
+  name: 'notEmpty',
+  zipCode: 'zipCode',
+  password: 'notEmpty',
+  passwordConfirm: 'notEmpty',
+};
 
 export default function AwesomeSignUp() {
   function onSubmit(data) {
@@ -8,9 +15,14 @@ export default function AwesomeSignUp() {
   }
 
   return (
-    <Form onSubmit={onSubmit} heading="Please Sign Up:">
+    <Form onSubmit={onSubmit} heading="Please Sign Up:" validators={validators}>
       <Input name="name" label="Name:" placeholder="Enter your name." />
       <Input name="email" label="Email:" placeholder="Enter your email." />
+      <Input
+        name="zipCode"
+        label="Zip Code:"
+        placeholder="Enter your zip code."
+      />
       <Input
         name="password"
         label="Password:"

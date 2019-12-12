@@ -25,6 +25,7 @@ form:focus-within {
 
 button {
   margin: 5px;
+  transition: all 0.2s linear;
 }
 
 button[type='button'] {

@@ -1,8 +1,27 @@
 import React, { cloneElement } from 'react';
 import useForm from '../hooks/useForm';
+import useFormValidation from '../hooks/useFormValidation';
 
-export default function Form({ onSubmit, heading, children }) {
+export function Input({ name, formData, onChange, label, placeholder, type }) {
+  return (
+    <div>
+      <label htmlFor={name}>
+        {label}
+        <input
+          type={type || 'text'}
+          name={name}
+          value={formData[name] || ''}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      </label>
+    </div>
+  );
+}
+
+export default function Form({ onSubmit, heading, children, validators }) {
   const { formData, handleSubmit, resetForm, updateField } = useForm(onSubmit);
+  const { formIsValid } = useFormValidation(formData, validators);
 
   function renderChildren() {
     return children.map(child =>
@@ -19,7 +38,9 @@ export default function Form({ onSubmit, heading, children }) {
       <h2>{heading}</h2>
       {renderChildren()}
       <div className="form-buttons">
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!formIsValid}>
+          Submit
+        </button>
         <button type="button" onClick={resetForm}>
           Reset Form
         </button>
