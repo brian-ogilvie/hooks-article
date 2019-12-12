@@ -2,26 +2,26 @@ import React, { cloneElement } from 'react';
 import useForm from '../hooks/useForm';
 import useFormValidation from '../hooks/useFormValidation';
 
-export function Input({ name, formData, onChange, label, placeholder, type }) {
+export function Input({ name, formData, onChange, label, type }) {
   return (
     <div>
       <label htmlFor={name}>
-        {label}
+        {`${label}:`}
         <input
           type={type || 'text'}
           name={name}
           value={formData[name] || ''}
           onChange={onChange}
-          placeholder={placeholder}
+          placeholder={`Enter your ${label}`}
         />
       </label>
     </div>
   );
 }
 
-export default function Form({ onSubmit, heading, children, validators }) {
+export default function Form({ onSubmit, heading, children, schema }) {
   const { formData, handleSubmit, resetForm, updateField } = useForm(onSubmit);
-  const { formIsValid } = useFormValidation(formData, validators);
+  const { formIsValid } = useFormValidation(formData, schema);
 
   function renderChildren() {
     return children.map(child =>

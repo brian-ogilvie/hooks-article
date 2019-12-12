@@ -1,40 +1,19 @@
 import React from 'react';
 import Form, { Input } from './Form';
+import { types } from '../hooks/useFormValidation';
 
-const validators = {
-  email: 'email',
-  name: 'notEmpty',
-  zipCode: 'zipCode',
-  password: 'notEmpty',
-  passwordConfirm: 'notEmpty',
+const schema = {
+  email: types.email,
+  name: types.notEmpty,
+  zipCode: types.zip,
 };
 
-export default function AwesomeSignUp() {
-  function onSubmit(data) {
-    console.log({ ...data });
-  }
-
+export default function AwesomeSignUp({ register }) {
   return (
-    <Form onSubmit={onSubmit} heading="Please Sign Up:" validators={validators}>
-      <Input name="name" label="Name:" placeholder="Enter your name." />
-      <Input name="email" label="Email:" placeholder="Enter your email." />
-      <Input
-        name="zipCode"
-        label="Zip Code:"
-        placeholder="Enter your zip code."
-      />
-      <Input
-        name="password"
-        label="Password:"
-        type="password"
-        placeholder="Enter your password."
-      />
-      <Input
-        name="passwordConfirm"
-        label="Confirm Password:"
-        type="password"
-        placeholder="Confirm your password."
-      />
+    <Form onSubmit={register} heading="Please Sign Up:" schema={schema}>
+      <Input name="name" label="Name" />
+      <Input name="email" label="Email" />
+      <Input name="zipCode" label="Zip Code" />
     </Form>
   );
 }

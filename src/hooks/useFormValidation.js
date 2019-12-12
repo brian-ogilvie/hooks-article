@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const validPatterns = {
-  email: /^\w[^ ]*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-  notEmpty: /\S+/,
-  zipCode: /^\d{5}(-\d{4})?$/,
+  EMAIL: /^\w[^ ]*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+  NOT_EMPTY: /\S+/,
+  ZIP: /^\d{5}(-\d{4})?$/,
 };
 
 function checkValidity(value, type) {
@@ -12,18 +12,24 @@ function checkValidity(value, type) {
   return pattern && pattern.test(value);
 }
 
-export default function useFormValidation(formData, validators) {
+export const types = {
+  email: 'EMAIL',
+  notEmpty: 'NOT_EMPTY',
+  zip: 'ZIP',
+};
+
+export default function useFormValidation(formData, schema) {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
     setFormIsValid(() => {
-      if (!validators || !Object.keys(validators).length) return true;
+      if (!schema || !Object.keys(schema).length) return true;
       if (!Object.keys(formData).length) return false;
-      return Object.keys(validators).every(key => {
-        return checkValidity(formData[key], validators[key]);
+      return Object.keys(schema).every(key => {
+        return checkValidity(formData[key], schema[key]);
       });
     });
-  }, [formData, validators]);
+  }, [formData, schema]);
 
   return { formIsValid };
 }

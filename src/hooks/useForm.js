@@ -17,13 +17,7 @@ export default function useForm(onSubmit, initialData = {}) {
   }
 
   function resetForm() {
-    setFormData(current => {
-      const result = { ...current };
-      Object.keys(result).forEach(key => {
-        result[key] = '';
-      });
-      return result;
-    });
+    setFormData(initialData);
   }
 
   return { formData, updateField, resetForm, handleSubmit };
