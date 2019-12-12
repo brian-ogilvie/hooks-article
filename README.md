@@ -14,7 +14,7 @@ The true power of React hooks is not simply providing statefulness to functional
 
 This article will be focused on some deep nuances of programming in React, so knowledge of JavaScript is a must, and some experience building in React is recommended.
 
-##Introduction
+## Introduction
 
 Allow me to open by paraphrasing a story I read once (In [this book](https://www.amazon.com/Functional-Thinking-Paradigm-Over-Syntax/dp/1449365515/ref=asc_df_1449365515/?tag=hyprod-20&linkCode=df0&hvadid=312128454859&hvpos=1o3&hvnetw=g&hvrand=876775105137829647&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9067609&hvtargid=pla-554069252364&psc=1)):
 
@@ -255,8 +255,8 @@ This solves our first two problems from above. Not only that. Consider the broad
 
 ## A Chainsaw is not an Axe
 
-Maybe I had been thinking about hooks all wrong. They aren't just another way do the same things we used to do with `this.state`. When used to their full potential, hooks allow us to separate our business logic from our UI logic and to standardize its implementation throughout our applications. If you've ever built software in Ruby on Rails or Swift, you are familiar with the MVC (Model, View, Controller) paradigm. You code should always have a clear separation of concerns. Your View should not concern itself with managing the current state of your application; it should simply display it. Your View should not concern itself with validating input from your users; it should just accept it. It is the Model who manages state and validates user input. This separation of concerns has always been a little fuzy in React. UI code and business logic have always lived right next to each other inside of components. The best we could do was to create "dumb" presentational components and then wrap them in container components (or higher order components) to handle logic. But these are all still components. What if I told you that ALL components could be presentational components?
-
+Maybe I had been thinking about hooks all wrong. They aren't just another way do the same things we used to do with `this.state`. When used to their full potential, hooks allow us to separate our business logic from our UI logic and to standardize its implementation throughout our applications. If you've ever built software in Ruby on Rails or Swift, you are familiar with the MVC (Model, View, Controller) paradigm. Your code should always have a clear separation of concerns. Your View should not concern itself with managing the current state of your application; it should simply display it. Your View should not concern itself with validating input from your users; it should just accept it. It is the Model who manages state and validates user input. This separation of concerns has always been a little fuzy in React. UI code and business logic have always lived right next to each other inside of components. The best we could do was to create "dumb" presentational components and then wrap them in container components (or higher order components) to handle logic. But these are all still components. What if I told you that ALL components could be presentational components?
+ 
 Let's see if we can expand on Nir's idea above to solve more of our problems from our naive implementation.
 
 ### Resetting the form
