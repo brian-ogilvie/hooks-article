@@ -32,3 +32,12 @@ button[type='button'] {
   background-color: white;
   color: #9b4dca;
 }
+
+@media screen and (max-width: 550px) {
+  h1 {
+    text-align: center;
+  }
+  form {
+    width: 95%;
+  }
+}
