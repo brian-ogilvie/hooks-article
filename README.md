@@ -477,7 +477,7 @@ function renderChildren() {
 
 So every child of this wrapper component automatically gets passed props of `formData`, `onChange`, and a `key` (React says I have to). Just invoke this function underneath our `<h2>` in the code above.
 
-But hold on. We're passing the entire formData down, not the individual field values? That right. Since this is a generic map function, we have no way of knowing, at this level, which child needs which prop, so we have to pass the whole object in. That means that our current `Input` component won't quite work. We need an `Input` component that knows how to select it's own value out of the `formData` object. Rather than change the one we have (it's perfectly fine for anyone who wants to build a form someplace without using this `Form` wrapper), let's make a new Input component right here in this file, specifically for users of this wrapper. We'll export it as a named export for anyone who wants it: 
+But hold on. We're passing the entire formData down, not the individual field values? That right. Since this is a generic map function, we have no way of knowing, at this level, which child needs which prop, so we have to pass the whole object in. That means that our current `Input` component won't quite work. We need an `Input` component that knows how to select its own value out of the `formData` object. Rather than change the one we have (it's perfectly fine for anyone who wants to build a form someplace without using this `Form` wrapper), let's make a new Input component right here in this file, specifically for users of this wrapper. We'll export it as a named export for anyone who wants it: 
 
 ```
 export function Input({ name, formData, onChange, label, type }) {
@@ -498,7 +498,7 @@ export function Input({ name, formData, onChange, label, type }) {
 }
 ```
 
-Really similar to our first one, but look how it sets it's value: by selecting the property that matches its name inside of `formData`. Also, this one dynamically sets its placeholder text based on the label. You might not want to do that last part, but it's a design decision, and it cuts down on the code we need to write when we use this component.
+Really similar to our first one, but look how it sets its value: by selecting the property that matches its name inside of `formData`. Also, this one dynamically sets its placeholder text based on the label. You might not want to do that last part, but it's a design decision, and it cuts down on the code we need to write when we use this component.
 
 So here's our entire `Form` file: 
 
